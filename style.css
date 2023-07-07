@@ -1,0 +1,16 @@
+header{
+    display: flex;
+    justify-content: space-between;
+}
+.title{
+    text-align: center;
+}
+/* multiple choice answers */
+.container{
+    text-align: center;
+}
+.startbut{
+    display: block;
+    margin:0 auto;
+    color: red;
+}
