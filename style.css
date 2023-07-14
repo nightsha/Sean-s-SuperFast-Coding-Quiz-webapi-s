@@ -6,11 +6,19 @@ header{
     text-align: center;
 }
 /* multiple choice answers */
+/* need line breaks in buttons */
 .container{
     text-align: center;
 }
 .startbut{
     display: block;
     margin:0 auto;
+    color: red;
+} 
+/* submit answer button need space between button above */
+.send-answ{
+    display: block;
+    margin:0 auto;
+    border-top: 10px;
     color: red;
 }
