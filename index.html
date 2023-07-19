@@ -8,20 +8,33 @@
   <title>Multiple Choice Coding Quiz<description>This is a Multiple Choice Coding Quiz to Prepare job seekers for their interview test
     
   </description>
-
   </title>
+  <!-- code from codePen.io -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+
    <header> 
      <p>View Highscores</p>
+     <!-- timer code copied from codepen.io -->
      <p>time: <span class="timer">9</span></p>
-     
+     <div class="timer">
+       <span class="timer_ _part timer_ _part--minutes">00</span>
+       <span class="timer_ _part">:</span>
+       <span class="timer_ _part timer_ _part--seconds">00</span>
+       <button type="button" class="timer_ _btn timer_ _btn--control timer_ _btn--start">
+        <button type="button" class="timer_ _btn timer_ _btn--reset">  
+        </button>
+          <span class="material-icons">play_arrow</span>
+       </button>
+     </div>
+       
    </header>
       <h1 class="title">Coding Quiz Challenge</h1>
 <div class="container">
     <h2>Questions</h2>
     <h3 class = "questionh3">  What is a integer?</h3>
-    <div>
+    <div class="answContainer">
         <button class="answer1">(a) A fraction</button>
         <button class="answer2">(b) A whole number</button>
         <button class="answer3">(c) A home invasion</button>
