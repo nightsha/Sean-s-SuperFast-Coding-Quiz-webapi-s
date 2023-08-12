@@ -1,25 +1,56 @@
 //selecting element on HTML with startbut class
+// ## timer is a  and we are selecting the class 'timer'
+var timer = document.querySelector(".timer")  
+// ## startBtn is a identifier and we are selecting the class 'startBtn                          
 var startBtn = document.querySelector(".startbut")
+// ## answContainer is a identifier                     
 var answContainer = document.querySelector(".answContainer")
+var initialContainer = document.querySelector(".initialContainer")
+// ## reserved words cannot be used as identifiers            
 var submit = document.querySelector(".send-answ")
+var container = document.querySelector(".container")
+var initialInput = document.querySelector(".initialInput")                      
+var timeInterval;
+var timesLeft = 10
 var score = 0
+//uestionIndex begins at the first question and starts at 0 in the array 
 var questionIndex = 0;
+// there are three objects in this array
 var questionArray = [
+
   {
-    question: "what is 1 + 1?",
+    question: "What is 1 + 1?",
     choices: [1, 2, 3, 4],
     correctAnswer: 2
   },
   {
-    question: "what is 1 + 2?",
-    choices: [4, 3, 2, 1],
+    question: "What is 1 + 2?",
+    // how do you return the 2 in choices using console.log?
+    choices: [4, 3, 2, 1],  
     correctAnswer: 3
+  },
+  {
+    question: "What is a integer?",
+    choices: ["(a) A fraction", "(b) A whole number", "(c) A home invasion", "(d) none of the above"],
+    correctAnswer: "b"
   }
 ]
 function startTimer() {
   //creat a timer interval here
+  timer.textContent = timesLeft
+  timeInterval = setInterval(function () {
+    timesLeft--
+    timer.textContent = timesLeft
+    if (timesLeft <= 0) {
+      gameOver()
+    }
+  }, 1000)
 }
-
+// console.log (questionArray)
+console.log (questionArray[questionIndex])
+// console.log (questionArray[questionIndex].question)
+// console.log (questionArray[questionIndex].choices,)
+console.log (questionArray[questionIndex,2] .correctAnswer)
 function displayQuestions() {
   var questionh3 = document.querySelector(".questionh3")
   var answer1 = document.querySelector(".answer1")
@@ -34,7 +65,9 @@ function displayQuestions() {
   answer4.textContent = questionArray[questionIndex].choices[3]
 
 }
-
+console.log(displayQuestions)
+// var a = "1"
+// var b =  1
 function checkAnswer(event) {
   console.log(event.target.tagName)
   if (event.target.tagName === "BUTTON") {
@@ -42,22 +75,45 @@ function checkAnswer(event) {
     console.log(selectAnswer)
     if (selectAnswer == questionArray[questionIndex].correctAnswer) {
       score += 5
-    } else{
+    } else {
       //subtract time
+      timesLeft -= 5
     }
-
-    if (questionIndex < questionArray.length-1){
-      questionIndex ++
+// Is this saying if a question left continue if not game over 
+    if (questionIndex < questionArray.length - 1) {
+      questionIndex++
       displayQuestions()
+    } else{
+      gameOver()
     }
   }
+}
+function gameOver(){
+  clearInterval(timeInterval)
+  timesLeft = 0
+  timer.textContent = timesLeft
+
+  initialContainer.classList.remove("hide")
+  container.classList.add("hide")
 }
 //create click event for startbutton
 startBtn.addEventListener("click", function () {
   console.log("startBut click");
   startBtn.classList.add("hide")
+  container.classList.remove("hide")
   startTimer()
   displayQuestions()
+})
+submit.addEventListener("click",function(){
+var initialValue = initialInput.value
+var localHighscore = JSON.parse(localStorage.getItem("highScore")) || []
+var highScoreObj = {
+  name:initialValue,
+  highscore:score
+}
+localHighscore.push(highScoreObj)
+localStorage.setItem("highScore", JSON.stringify(localHighscore))
+location.href="./highscore.html"
 })
 
 //create click event for answer button
@@ -158,3 +214,6 @@ class Timer {
 new Timer(
   document.querySelector(".timer")
 );
+
+
+
